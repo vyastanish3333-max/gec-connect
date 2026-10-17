@@ -747,10 +747,12 @@ export default function Home() {
     className="" 
   />
 </div>
-</div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
-
 
 
             
