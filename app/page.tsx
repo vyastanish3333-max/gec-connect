@@ -744,5 +744,6 @@ export default function Home() {
               <input 
                 type="text" 
                 placeholder="Your Name (for Leaderboard credit)" 
-                className
+                className />
+                
             
