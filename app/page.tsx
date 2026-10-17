@@ -747,6 +747,9 @@ export default function Home() {
     className="" 
   />
 </div>
+</div>
+  );
+}
 
 
 
