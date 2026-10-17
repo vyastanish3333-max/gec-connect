@@ -740,10 +740,14 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="space-y-3">
-              <input 
-                type="text" 
-                placeholder="Your Name (for Leaderboard credit)" 
-                className />
-                
+           <div className="space-y-3">
+  <input
+    type="text"
+    placeholder="Your Name (for Leaderboard credit)"
+    className="" 
+  />
+</div>
+
+
+
             
