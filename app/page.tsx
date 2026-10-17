@@ -21,10 +21,12 @@ import {
   ShieldCheck,
   Trophy,
   Crown,
-  ThumbsUp,
   Award,
   ExternalLink,
-  Users
+  Calendar,
+  Share2,
+  Bell,
+  AlertCircle
 } from 'lucide-react';
 
 interface ResourceItem {
@@ -61,10 +63,43 @@ export default function Home() {
   const [selectedSubject, setSelectedSubject] = useState<SubjectItem | null>(null);
   const [upvotedIds, setUpvotedIds] = useState<string[]>([]);
 
-  // Replace this URL with your actual Google Form link in Phase 2
-  const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSd8NZikgf_QxGoJeQ3FxTpWy7ohooXTvGgzQH9qRf8ziEZWag/viewform?usp=header';
+  // 1. UPDATE THESE 3 LINKS WITH YOUR REAL LINKS
+  const GOOGLE_FORM_URL = 'https://docs.google.com/forms';
+  const WHATSAPP_CHANNEL_URL = 'https://whatsapp.com/channel/'; 
+  const AFFILIATE_DEAL_URL = 'https://www.amazon.in/s?k=casio+fx-991cw';
 
   const filters = ['All', 'Sem 1', 'Electrical', 'Mechanical', 'Computer', 'Civil', 'PYQs'];
+
+  // Upcoming Assignments & Deadlines (Update anytime!)
+  const upcomingAssignments = [
+    {
+      id: 'a1',
+      subject: 'Basic Electrical Eng. (3110005)',
+      task: 'Assignment 1: DC & AC Circuits Numericals',
+      dueDate: 'Post-Diwali Week 1',
+      status: 'Solution Uploaded',
+      urgent: true,
+      solutionUrl: 'https://drive.google.com'
+    },
+    {
+      id: 'a2',
+      subject: 'Physics (3110018)',
+      task: 'Laser & Superconductivity Tutorial Sheet',
+      dueDate: 'Post-Diwali Week 1',
+      status: 'Solution Uploaded',
+      urgent: true,
+      solutionUrl: 'https://drive.google.com'
+    },
+    {
+      id: 'a3',
+      subject: 'Basic Mechanical Eng. (3110006)',
+      task: 'Lab Manual & Boilers Sketchbook Check',
+      dueDate: 'Post-Diwali Week 2',
+      status: 'Reference PDF Ready',
+      urgent: false,
+      solutionUrl: 'https://drive.google.com'
+    }
+  ];
 
   const [subjects, setSubjects] = useState<SubjectItem[]>([
     {
@@ -82,10 +117,10 @@ export default function Home() {
       updated: 'Updated 2 days ago',
       featuredTopics: ['DC & AC Circuits', 'Single Phase Transformers', 'Three Phase Induction Motors'],
       resources: [
-        { id: 'bee-1', title: 'DC & AC Circuits Complete Handwritten Notes', type: 'Notes', author: 'Tanish V.', upvotes: 42, driveUrl: 'https://drive.google.com/drive/folders/1G4-uWYTd7dAGNDqYVMOGq3UAAts301hC?usp=drive_link' },
-        { id: 'bee-2', title: 'GTU Mid-Sem 2025 Solved Paper + Answer Key', type: 'PYQ', author: 'Rohan P.', upvotes: 35, driveUrl: 'https://drive.google.com/drive/folders/1G4-uWYTd7dAGNDqYVMOGq3UAAts301hC?usp=drive_link' },
-        { id: 'bee-3', title: 'Single Phase Transformer Step-by-Step Derivations', type: 'Derivation', author: 'Tanish V.', upvotes: 29, driveUrl: 'https://drive.google.com/drive/folders/1G4-uWYTd7dAGNDqYVMOGq3UAAts301hC?usp=drive_link' },
-        { id: 'bee-4', title: 'Mid-Sem Topper Answer Sheet (28/30 Marks)', type: 'Topper Sheet', author: 'Aarav M.', upvotes: 51, driveUrl: 'https://drive.google.com/drive/folders/1G4-uWYTd7dAGNDqYVMOGq3UAAts301hC?usp=drive_link' },
+        { id: 'bee-1', title: 'DC & AC Circuits Complete Handwritten Notes', type: 'Notes', author: 'Tanish V.', upvotes: 42, driveUrl: 'https://drive.google.com' },
+        { id: 'bee-2', title: 'GTU Mid-Sem Solved Paper + Answer Key', type: 'PYQ', author: 'Rohan P.', upvotes: 35, driveUrl: 'https://drive.google.com' },
+        { id: 'bee-3', title: 'Single Phase Transformer Step-by-Step Derivations', type: 'Derivation', author: 'Tanish V.', upvotes: 29, driveUrl: 'https://drive.google.com' },
+        { id: 'bee-4', title: 'Mid-Sem Topper Answer Sheet (28/30 Marks)', type: 'Topper Sheet', author: 'Aarav M.', upvotes: 51, driveUrl: 'https://drive.google.com' },
       ]
     },
     {
@@ -103,8 +138,8 @@ export default function Home() {
       updated: 'Updated 5 days ago',
       featuredTopics: ['Properties of Gases', 'Heat Engines & Boilers'],
       resources: [
-        { id: 'bme-1', title: 'Properties of Gases All Thermodynamic Derivations', type: 'Derivation', author: 'Karan S.', upvotes: 24, driveUrl: 'https://drive.google.com/drive/folders/1G4-uWYTd7dAGNDqYVMOGq3UAAts301hC?usp=drive_link' },
-        { id: 'bme-2', title: 'Boilers & Heat Engines Mid-Sem Question Bank', type: 'PYQ', author: 'Tanish V.', upvotes: 19, driveUrl: 'https://drive.google.com/drive/folders/1G4-uWYTd7dAGNDqYVMOGq3UAAts301hC?usp=drive_link' },
+        { id: 'bme-1', title: 'Properties of Gases All Thermodynamic Derivations', type: 'Derivation', author: 'Karan S.', upvotes: 24, driveUrl: 'https://drive.google.com' },
+        { id: 'bme-2', title: 'Boilers & Heat Engines Mid-Sem Question Bank', type: 'PYQ', author: 'Tanish V.', upvotes: 19, driveUrl: 'https://drive.google.com' },
       ]
     },
     {
@@ -122,8 +157,8 @@ export default function Home() {
       updated: 'Updated 1 week ago',
       featuredTopics: ['Electronic Materials', 'Superconductivity', 'Lasers'],
       resources: [
-        { id: 'phy-1', title: 'Laser & Superconductivity Derivations Summary', type: 'Derivation', author: 'Tanish V.', upvotes: 38, driveUrl: 'https://drive.google.com/drive/folders/1G4-uWYTd7dAGNDqYVMOGq3UAAts301hC?usp=drive_link' },
-        { id: 'phy-2', title: 'All-in-One Physics Formula Cheat Sheet', type: 'Notes', author: 'Priya D.', upvotes: 31, driveUrl: 'https://drive.google.com/drive/folders/1G4-uWYTd7dAGNDqYVMOGq3UAAts301hC?usp=drive_link' },
+        { id: 'phy-1', title: 'Laser & Superconductivity Derivations Summary', type: 'Derivation', author: 'Tanish V.', upvotes: 38, driveUrl: 'https://drive.google.com' },
+        { id: 'phy-2', title: 'All-in-One Physics Formula Cheat Sheet', type: 'Notes', author: 'Priya D.', upvotes: 31, driveUrl: 'https://drive.google.com' },
       ]
     },
     {
@@ -141,17 +176,17 @@ export default function Home() {
       updated: 'Updated Yesterday',
       featuredTopics: ['Indeterminate Forms & L\'Hospital', 'Fourier Series', 'Matrices & Eigenvalues'],
       resources: [
-        { id: 'math-1', title: 'Matrices, Eigenvalues & Cayley-Hamilton Solved Bank', type: 'Notes', author: 'Tanish V.', upvotes: 64, driveUrl: 'https://drive.google.com/drive/folders/1G4-uWYTd7dAGNDqYVMOGq3UAAts301hC?usp=drive_link' },
-        { id: 'math-2', title: 'Fourier Series & Indeterminate Forms Step Solutions', type: 'PYQ', author: 'Dev K.', upvotes: 47, driveUrl: 'https://drive.google.com/drive/folders/1G4-uWYTd7dAGNDqYVMOGq3UAAts301hC?usp=drive_link' },
+        { id: 'math-1', title: 'Matrices, Eigenvalues & Cayley-Hamilton Solved Bank', type: 'Notes', author: 'Tanish V.', upvotes: 64, driveUrl: 'https://drive.google.com' },
+        { id: 'math-2', title: 'Fourier Series & Indeterminate Forms Step Solutions', type: 'PYQ', author: 'Dev K.', upvotes: 47, driveUrl: 'https://drive.google.com' },
       ]
     }
   ]);
 
   const branchStandings = [
-    { name: 'Electrical Engineering', points: 1420, files: 28, color: 'bg-indigo-600', lightBg: 'bg-indigo-50', textColor: 'text-indigo-700', percent: 88 },
-    { name: 'Computer Engineering', points: 1150, files: 22, color: 'bg-sky-500', lightBg: 'bg-sky-50', textColor: 'text-sky-700', percent: 72 },
-    { name: 'Mechanical Engineering', points: 890, files: 17, color: 'bg-amber-500', lightBg: 'bg-amber-50', textColor: 'text-amber-700', percent: 56 },
-    { name: 'Civil Engineering', points: 640, files: 12, color: 'bg-emerald-500', lightBg: 'bg-emerald-50', textColor: 'text-emerald-700', percent: 40 },
+    { name: 'Electrical Engineering', points: 1420, files: 28, color: 'bg-indigo-600', textColor: 'text-indigo-700', percent: 88 },
+    { name: 'Computer Engineering', points: 1150, files: 22, color: 'bg-sky-500', textColor: 'text-sky-700', percent: 72 },
+    { name: 'Mechanical Engineering', points: 890, files: 17, color: 'bg-amber-500', textColor: 'text-amber-700', percent: 56 },
+    { name: 'Civil Engineering', points: 640, files: 12, color: 'bg-emerald-500', textColor: 'text-emerald-700', percent: 40 },
   ];
 
   const topContributors = [
@@ -180,6 +215,15 @@ export default function Home() {
     }
   };
 
+  // Viral 1-Click WhatsApp Share Generator
+  const shareOnWhatsApp = (subjectTitle: string, resourceTitle?: string) => {
+    const siteUrl = typeof window !== 'undefined' ? window.location.origin : 'https://gec-connect.vercel.app';
+    const text = resourceTitle
+      ? `🔥 Check out "${resourceTitle}" for *${subjectTitle}* on GEC Connect! Free GTU Notes, PYQs & Topper Sheets: ${siteUrl}`
+      : `⚡ All GTU Sem-1 Notes, Mid-Sem PYQs & Topper Answer Sheets for *${subjectTitle}* are live on GEC Connect: ${siteUrl}`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+  };
+
   const filteredSubjects = subjects.filter(sub => {
     const matchesSearch =
       sub.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -195,6 +239,20 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-indigo-100 selection:text-indigo-900 relative overflow-x-hidden">
       
+      {/* TOP BROADCAST BAR (WhatsApp / Telegram Channel Funnel) */}
+      <div className="bg-indigo-600 text-white text-xs py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
+        <Bell className="w-3.5 h-3.5 animate-bounce shrink-0" />
+        <span>Get instant alerts when new Mid-Sem PYQs & Topper Sheets drop!</span>
+        <a 
+          href={WHATSAPP_CHANNEL_URL} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="underline font-extrabold hover:text-indigo-100 ml-1"
+        >
+          Join WhatsApp Channel →
+        </a>
+      </div>
+
       {/* Soft Modern Background Accents */}
       <div className="fixed top-[-15%] left-[-10%] w-[500px] h-[500px] rounded-full bg-indigo-200/40 blur-[120px] pointer-events-none" />
       <div className="fixed bottom-[-15%] right-[-10%] w-[500px] h-[500px] rounded-full bg-sky-200/40 blur-[120px] pointer-events-none" />
@@ -215,8 +273,12 @@ export default function Home() {
             </span>
           </div>
 
-          <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+          <nav className="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
             <a href="#materials" className="text-indigo-600 hover:text-indigo-700 transition-colors">Materials</a>
+            <a href="#assignments" className="hover:text-indigo-600 transition-colors flex items-center gap-1.5">
+              Assignments
+              <span className="text-[10px] bg-rose-100 text-rose-700 font-extrabold px-1.5 py-0.5 rounded-full">3 Due</span>
+            </a>
             <a href="#branch-wars" className="hover:text-indigo-600 transition-colors flex items-center gap-1.5">
               Branch Wars
               <Flame className="w-4 h-4 text-orange-500 fill-orange-500" />
@@ -225,10 +287,16 @@ export default function Home() {
               Leaderboard
               <Trophy className="w-4 h-4 text-amber-500" />
             </a>
-            <a href="#contribute" className="hover:text-indigo-600 transition-colors">Contribute</a>
           </nav>
 
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-2.5">
+            <button 
+              onClick={() => shareOnWhatsApp('All Sem-1 Subjects')}
+              className="px-3.5 py-2 rounded-xl border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer"
+            >
+              <Share2 className="w-3.5 h-3.5 text-emerald-600" />
+              <span>Share Site</span>
+            </button>
             <button 
               onClick={() => setUploadModalOpen(true)}
               className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-semibold shadow-md shadow-indigo-600/20 transition-all cursor-pointer"
@@ -258,9 +326,9 @@ export default function Home() {
         {mobileMenuOpen && (
           <div className="md:hidden border-b border-slate-200 bg-white px-4 pt-2 pb-4 space-y-2 text-sm font-semibold text-slate-700">
             <a href="#materials" onClick={() => setMobileMenuOpen(false)} className="block py-2 border-b border-slate-100">Study Materials</a>
+            <a href="#assignments" onClick={() => setMobileMenuOpen(false)} className="block py-2 border-b border-slate-100">Assignment Tracker (3 Due)</a>
             <a href="#branch-wars" onClick={() => setMobileMenuOpen(false)} className="block py-2 border-b border-slate-100">Branch Wars</a>
-            <a href="#leaderboard" onClick={() => setMobileMenuOpen(false)} className="block py-2 border-b border-slate-100">XP Leaderboard</a>
-            <a href="#contribute" onClick={() => setMobileMenuOpen(false)} className="block py-2">Contribute & Earn XP</a>
+            <a href="#leaderboard" onClick={() => setMobileMenuOpen(false)} className="block py-2">XP Leaderboard</a>
           </div>
         )}
       </header>
@@ -358,7 +426,9 @@ export default function Home() {
                 </div>
               </div>
               <a 
-                href="#sponsor"
+                href={AFFILIATE_DEAL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-xs font-bold text-indigo-700 bg-indigo-100 hover:bg-indigo-200 px-4 py-2.5 rounded-xl transition-colors shrink-0 self-end sm:self-center"
               >
                 Check Student Price →
@@ -426,7 +496,6 @@ export default function Home() {
                       ))}
                     </div>
 
-                    {/* Top Upvoted Note Highlight */}
                     {topResource && (
                       <div className="mb-4 p-3 rounded-2xl bg-amber-50/70 border border-amber-200/80 flex items-center justify-between gap-2">
                         <div className="flex items-center gap-2 min-w-0">
@@ -467,10 +536,78 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 6. COMPETITIVE ARENA: BRANCH WARS + XP LEADERBOARD */}
+        {/* 6. NEW: UPCOMING ASSIGNMENTS & SUBMISSION TRACKER */}
+        <section id="assignments" className="mb-16">
+          <div className="rounded-3xl bg-white border-2 border-slate-200/90 p-6 sm:p-8 shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+              <div>
+                <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-rose-600 bg-rose-50 border border-rose-200 px-3 py-1 rounded-full mb-2">
+                  <Calendar className="w-3.5 h-3.5" /> Batch Submission Tracker
+                </div>
+                <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900">
+                  Upcoming Assignments & Lab Manuals
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-500">
+                  Stay ahead of submission deadlines with verified reference solutions
+                </p>
+              </div>
+              <button 
+                onClick={() => shareOnWhatsApp('Sem-1 Assignments & Deadlines')}
+                className="self-start sm:self-center px-4 py-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 text-xs font-extrabold flex items-center gap-2 transition-colors cursor-pointer"
+              >
+                <Share2 className="w-4 h-4" />
+                <span>Share Deadlines on WhatsApp</span>
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {upcomingAssignments.map((item) => (
+                <div 
+                  key={item.id}
+                  className="p-5 rounded-2xl bg-slate-50 border border-slate-200/90 flex flex-col justify-between gap-4"
+                >
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <span className="text-[11px] font-bold text-indigo-600 bg-indigo-50 px-2.5 py-0.5 rounded-md">
+                        {item.subject}
+                      </span>
+                      {item.urgent && (
+                        <span className="inline-flex items-center gap-1 text-[10px] font-extrabold text-rose-700 bg-rose-100 px-2 py-0.5 rounded-full">
+                          <AlertCircle className="w-3 h-3" /> Priority
+                        </span>
+                      )}
+                    </div>
+                    <h4 className="text-sm sm:text-base font-extrabold text-slate-900 mb-1">
+                      {item.task}
+                    </h4>
+                    <p className="text-xs text-slate-500 font-medium">
+                      Due: <span className="text-slate-800 font-bold">{item.dueDate}</span>
+                    </p>
+                  </div>
+
+                  <div className="pt-3 border-t border-slate-200/70 flex items-center justify-between">
+                    <span className="text-[11px] font-bold text-emerald-700 flex items-center gap-1">
+                      <CheckCircle2 className="w-3.5 h-3.5" /> {item.status}
+                    </span>
+                    <a 
+                      href={item.solutionUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-extrabold text-indigo-600 hover:underline flex items-center gap-1"
+                    >
+                      <span>View PDF</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 7. COMPETITIVE ARENA: BRANCH WARS + XP LEADERBOARD */}
         <section id="branch-wars" className="mb-16 grid grid-cols-1 lg:grid-cols-12 gap-6">
           
-          {/* Left 5 Cols: Branch Wars */}
           <div className="lg:col-span-5 rounded-3xl bg-white border-2 border-slate-200/90 p-6 sm:p-7 shadow-sm flex flex-col justify-between">
             <div>
               <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-50 border border-orange-200 px-3 py-1 rounded-full mb-3">
@@ -519,7 +656,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right 7 Cols: Top Student Contributors */}
           <div id="leaderboard" className="lg:col-span-7 rounded-3xl bg-white border-2 border-slate-200/90 p-6 sm:p-7 shadow-sm">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
               <div>
@@ -574,7 +710,7 @@ export default function Home() {
 
         </section>
 
-        {/* 7. CONTRIBUTE CTA BANNER */}
+        {/* 8. CONTRIBUTE CTA BANNER */}
         <section id="contribute" className="rounded-3xl bg-gradient-to-r from-indigo-600 via-violet-600 to-sky-500 p-8 sm:p-12 text-white shadow-xl shadow-indigo-500/20">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
             <div className="max-w-xl">
@@ -601,19 +737,25 @@ export default function Home() {
 
       </main>
 
-      {/* FOOTER */}
-      <footer className="border-t border-slate-200 bg-white py-8 text-center text-xs text-slate-500">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="font-semibold text-slate-700">© 2026 GEC Connect • Built for GEC Dahod & GTU Engineering Students</p>
-          <div className="flex gap-6 font-medium">
-            <a href="#materials" className="hover:text-indigo-600">Materials</a>
-            <a href="#leaderboard" className="hover:text-indigo-600">Leaderboard</a>
-            <a href="#contribute" className="hover:text-indigo-600">Submit PDF</a>
+      {/* FOOTER WITH OFFICIAL ACADEMIC DISCLAIMER */}
+      <footer className="border-t border-slate-200 bg-white py-8 text-xs text-slate-500">
+        <div className="max-w-7xl mx-auto px-4 space-y-4">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="font-bold text-slate-800">© 2026 GEC Connect • Student-Led Peer Learning Initiative</p>
+            <div className="flex gap-6 font-semibold">
+              <a href="#materials" className="hover:text-indigo-600">Materials</a>
+              <a href="#assignments" className="hover:text-indigo-600">Assignments</a>
+              <a href="#leaderboard" className="hover:text-indigo-600">Leaderboard</a>
+              <a href="#contribute" className="hover:text-indigo-600">Submit PDF</a>
+            </div>
           </div>
+          <p className="text-[11px] text-slate-400 text-center sm:text-left leading-relaxed">
+            Disclaimer: GEC Connect is an independent, student-run peer-to-peer educational resource portal created to assist engineering students. All study notes, solutions, and question banks are shared for academic reference only.
+          </p>
         </div>
       </footer>
 
-      {/* MODAL 1: SUBJECT RESOURCES & UPVOTE BATTLE DRAWER */}
+      {/* MODAL 1: SUBJECT RESOURCES, UPVOTE & WHATSAPP SHARE DRAWER */}
       {selectedSubject && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
           <div className="relative w-full max-w-2xl rounded-3xl bg-white border border-slate-200 p-6 sm:p-8 shadow-2xl max-h-[85vh] flex flex-col">
@@ -626,7 +768,7 @@ export default function Home() {
                   {selectedSubject.title}
                 </h3>
                 <p className="text-xs text-slate-500">
-                  Upvote (🔥) the most helpful PDFs so batchmates find the best material first!
+                  Upvote (🔥) the best PDFs or share directly with your batchmates on WhatsApp!
                 </p>
               </div>
               <button 
@@ -668,10 +810,10 @@ export default function Home() {
                         </p>
                       </div>
 
-                      <div className="flex items-center gap-2.5 shrink-0">
+                      <div className="flex items-center gap-2 shrink-0">
                         <button
                           onClick={() => handleUpvote(selectedSubject.id, res.id)}
-                          className={`px-3.5 py-2 rounded-xl text-xs font-extrabold flex items-center gap-1.5 border transition-all cursor-pointer ${
+                          className={`px-3 py-2 rounded-xl text-xs font-extrabold flex items-center gap-1.5 border transition-all cursor-pointer ${
                             hasUpvoted
                               ? 'bg-orange-500 text-white border-orange-500 shadow-sm'
                               : 'bg-white text-slate-700 border-slate-200 hover:border-orange-400'
@@ -681,13 +823,21 @@ export default function Home() {
                           <span>{res.upvotes}</span>
                         </button>
 
+                        <button
+                          onClick={() => shareOnWhatsApp(selectedSubject.title, res.title)}
+                          title="Share on WhatsApp"
+                          className="p-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 transition-colors cursor-pointer"
+                        >
+                          <Share2 className="w-4 h-4" />
+                        </button>
+
                         <a
                           href={res.driveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold flex items-center gap-1.5 shadow-sm"
                         >
-                          <span>Open PDF</span>
+                          <span>PDF</span>
                           <ExternalLink className="w-3.5 h-3.5" />
                         </a>
                       </div>
@@ -729,7 +879,6 @@ export default function Home() {
               </button>
             </div>
 
-            {/* Anti-Spam Moderation Notice */}
             <div className="p-3 rounded-2xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-900 mb-4 space-y-1">
               <p className="font-bold flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
@@ -740,19 +889,45 @@ export default function Home() {
               </p>
             </div>
 
-           <div className="space-y-3">
-  <input
-    type="text"
-    placeholder="Your Name (for Leaderboard credit)"
-    className="" 
-  />
-</div>
+            <div className="space-y-3">
+              <input 
+                type="text" 
+                placeholder="Your Name (for Leaderboard credit)" 
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-indigo-500"
+              />
+              <div className="grid grid-cols-2 gap-2.5">
+                <select className="w-full px-3 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700 focus:outline-none">
+                  <option>Electrical (Sem 1)</option>
+                  <option>Mechanical (Sem 1)</option>
+                  <option>Computer (Sem 1)</option>
+                  <option>Civil (Sem 1)</option>
+                </select>
+                <select className="w-full px-3 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700 focus:outline-none">
+                  <option>Topper Sheet (+50 XP)</option>
+                  <option>Full Notes (+30 XP)</option>
+                  <option>Mid-Sem PYQ (+20 XP)</option>
+                </select>
+              </div>
+              <input 
+                type="text" 
+                placeholder="Paste Google Drive PDF Link (Anyone with link)" 
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-indigo-500"
+              />
+
+              <a 
+                href={GOOGLE_FORM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setUploadModalOpen(false)}
+                className="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-sm shadow-md shadow-indigo-500/20 mt-2 flex items-center justify-center gap-2"
+              >
+                <span>Open Verification Form</span>
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
           </div>
         </div>
       )}
     </div>
   );
 }
-
-
-            
