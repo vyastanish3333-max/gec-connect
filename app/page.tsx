@@ -117,10 +117,10 @@ export default function Home() {
       updated: 'Updated 2 days ago',
       featuredTopics: ['DC & AC Circuits', 'Single Phase Transformers', 'Three Phase Induction Motors'],
       resources: [
-        { id: 'bee-1', title: 'DC & AC Circuits Complete Handwritten Notes', type: 'Notes', author: 'Tanish V.', upvotes: 42, driveUrl: 'https://drive.google.com' },
-        { id: 'bee-2', title: 'GTU Mid-Sem Solved Paper + Answer Key', type: 'PYQ', author: 'Rohan P.', upvotes: 35, driveUrl: 'https://drive.google.com' },
-        { id: 'bee-3', title: 'Single Phase Transformer Step-by-Step Derivations', type: 'Derivation', author: 'Tanish V.', upvotes: 29, driveUrl: 'https://drive.google.com' },
-        { id: 'bee-4', title: 'Mid-Sem Topper Answer Sheet (28/30 Marks)', type: 'Topper Sheet', author: 'Aarav M.', upvotes: 51, driveUrl: 'https://drive.google.com' },
+        { id: 'bee-1', title: 'DC & AC Circuits Complete Handwritten Notes', type: 'Notes', author: 'Tanish V.', upvotes: 42, driveUrl: 'driveUrl: 'https://drive.google.com/drive/folders/1ZQx8VHt-ZbCgmikSWEEqk1AnvW4PPmbG?usp=drive_link'' },
+        { id: 'bee-2', title: 'GTU Mid-Sem Solved Paper + Answer Key', type: 'PYQ', author: 'Rohan P.', upvotes: 35, driveUrl: 'driveUrl: 'https://drive.google.com/drive/folders/1ZQx8VHt-ZbCgmikSWEEqk1AnvW4PPmbG?usp=drive_link'' },
+        { id: 'bee-3', title: 'Single Phase Transformer Step-by-Step Derivations', type: 'Derivation', author: 'Tanish V.', upvotes: 29, driveUrl: 'driveUrl: 'https://drive.google.com/drive/folders/1ZQx8VHt-ZbCgmikSWEEqk1AnvW4PPmbG?usp=drive_link'' },
+        { id: 'bee-4', title: 'Mid-Sem Topper Answer Sheet (28/30 Marks)', type: 'Topper Sheet', author: 'Aarav M.', upvotes: 51, driveUrl: 'driveUrl: 'https://drive.google.com/drive/folders/1ZQx8VHt-ZbCgmikSWEEqk1AnvW4PPmbG?usp=drive_link'' },
       ]
     },
     {
