@@ -910,7 +910,7 @@ export default function Home() {
               </div>
               <input 
                 type="text" 
-                placeholder="Paste Google Drive PDF Link (Anyone with link)" 
+                placeholder="https://drive.google.com/drive/folders/1G4-uWYTd7dAGNDqYVMOGq3UAAts301hC?usp=drive_link" 
                 className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-indigo-500"
               />
 
