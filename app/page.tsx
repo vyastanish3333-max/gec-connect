@@ -915,7 +915,7 @@ export default function Home() {
               />
 
               <a 
-                href={GOOGLE_FORM_URL}
+             href="https://drive.google.com/drive/folders/1G4-uWYTd7dAGNDqYVMOGq3UAAts301hC?usp=drive_link"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setUploadModalOpen(false)}
