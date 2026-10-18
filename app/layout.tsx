@@ -30,7 +30,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
      <body>
   {children}
-  <Analytics />
+
 </body>
     </html>
   );
